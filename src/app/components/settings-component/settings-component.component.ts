@@ -7,7 +7,7 @@ import {DataService} from "../../services/data.service";
   styleUrls: ['./settings-component.component.scss']
 })
 export class SettingsComponentComponent {
-  customIds: string[] = Array(10).fill('');
+  customIds: string[] = Array(3).fill('');
   constructor(private dataService: DataService) {}
   updateCustomIds(): void {
     this.dataService.updateCustomIds(this.customIds);
