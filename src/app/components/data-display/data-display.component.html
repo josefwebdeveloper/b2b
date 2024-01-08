@@ -1,0 +1,17 @@
+<h2>test</h2>
+<table>
+  <tr *ngFor="let data of dataStream">
+    <td>{{ data.id }}</td>
+    <td>{{ data.int }}</td>
+    <td>{{ data.float }}</td>
+    <td [ngStyle]="{'background-color': data.color}">{{ data.color }}</td>
+    <td>
+      <table>
+        <tr>
+          <td>{{ data.child.id }}</td>
+          <td [ngStyle]="{'background-color': data.child.color}">{{ data.child.color }}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
