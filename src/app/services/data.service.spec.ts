@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { DataService } from './data.service';
 
 describe('DataService', () => {
@@ -10,7 +9,9 @@ describe('DataService', () => {
     service = TestBed.inject(DataService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should update custom IDs', () => {
+    const customIds = ['id1', 'id2', 'id3'];
+    service.updateCustomIds(customIds);
+    expect((service as any)._customIds).toEqual(customIds);
   });
 });
