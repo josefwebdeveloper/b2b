@@ -1,12 +1,35 @@
-<div>
-  <label for="timerInput">Timer interval (ms):</label>
-  <input type="number" id="timerInput" (change)="onSettingsChange(timerInput.value,arraySizeInput.value)" #timerInput>
+<!--<div>-->
+<!--  <label for="timerInput">Timer interval (ms):</label>-->
+<!--  <input type="number" id="timerInput" (change)="onSettingsChange(timerInput.value,arraySizeInput.value)" #timerInput>-->
 
-  <label for="arraySizeInput">Array size:</label>
-  <input type="number" id="arraySizeInput" (change)="onSettingsChange(timerInput.value, arraySizeInput.value)" #arraySizeInput>
-</div>
+<!--  <label for="arraySizeInput">Array size:</label>-->
+<!--  <input type="number" id="arraySizeInput" (change)="onSettingsChange(timerInput.value, arraySizeInput.value)" #arraySizeInput>-->
+<!--</div>-->
 <!-- Custom IDs input fields for the first elements -->
-<div *ngFor="let id of customIds; let i = index">
-  <label for="customId-{{i}}">Custom ID {{i + 1}}:</label>
-  <input type="text" id="customId-{{i}}" [(ngModel)]="customIds[i]" (change)="updateCustomIds()">
+<!--<div *ngFor="let id of customIds; let i = index">-->
+<!--  <label for="customId-{{i}}">Custom ID {{i + 1}}:</label>-->
+<!--  <input type="text" id="customId-{{i}}" [(ngModel)]="customIds[i]" (change)="updateCustomIds()">-->
+<!--</div>-->
+<div class="settings-container">
+  <div class="form-group">
+    <label for="timerInput">Timer interval (ms):</label>
+    <input type="number" id="timerInput" class="form-control"
+           (change)="onSettingsChange(timerInput.value, arraySizeInput.value)" #timerInput>
+  </div>
+
+  <div class="form-group">
+    <label for="arraySizeInput">Array size:</label>
+    <input type="number" id="arraySizeInput" class="form-control"
+           (change)="onSettingsChange(timerInput.value, arraySizeInput.value)" #arraySizeInput>
+  </div>
+
+
+
+  <div class="custom-ids-container">
+    <div *ngFor="let id of customIds; let i = index" class="custom-id-group">
+      <label for="customId-{{i}}">Custom ID {{ i + 1 }}:</label>
+      <input type="text" id="customId-{{i}}" class="form-control" [(ngModel)]="customIds[i]"
+             (change)="updateCustomIds()">
+    </div>
+  </div>
 </div>

@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-settings-component',
   templateUrl: './settings-component.component.html',
-  styleUrls: ['./settings-component.component.scss']
+  styleUrls: ['./settings-component.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class SettingsComponentComponent {
   customIds: string[] = Array(3).fill('');

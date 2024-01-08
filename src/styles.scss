@@ -3,7 +3,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: aquamarine;
 }
 
-html, body { height: 100%; }
+html, body { height: 100vh;  overflow: hidden}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

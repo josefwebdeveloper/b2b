@@ -1,4 +1,3 @@
-// src/app/model/data-object.model.ts
 
 export interface ChildObject {
   id: string;

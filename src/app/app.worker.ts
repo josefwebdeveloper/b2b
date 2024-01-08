@@ -1,6 +1,5 @@
-
-addEventListener('message', ({ data }) => {
-  const { arraySize, timer } = data;
+addEventListener('message', ({data}) => {
+  const {arraySize, timer} = data;
   setInterval(() => {
     const dataArray = [];
     for (let i = 0; i < arraySize; i++) {
@@ -26,8 +25,7 @@ function generateDataObject() {
 function generateId() {
   return Math.random().toString(36).substring(2, 15);
 }
-// const dataArray = [1,2,3]; // Your generated data array
-// postMessage(dataArray);
+
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DataService} from "../../services/data.service";
 import {DataObject} from "../../model/data-object.model";
 import {Subscription} from "rxjs";
@@ -6,10 +6,10 @@ import {Subscription} from "rxjs";
 @Component({
   selector: 'app-data-display',
   templateUrl: './data-display.component.html',
-  styleUrls: ['./data-display.component.scss']
+  styleUrls: ['./data-display.component.scss'],
 })
 
-export class DataDisplayComponent implements OnInit{
+export class DataDisplayComponent implements OnInit, OnDestroy{
   dataStream: DataObject[] = [];
   subscription= new Subscription()
   constructor(private dataService: DataService) {

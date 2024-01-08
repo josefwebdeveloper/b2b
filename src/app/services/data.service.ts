@@ -43,7 +43,6 @@ export class DataService {
   }
 
   private applyTransformations(data: DataObject[]): DataObject[] {
-    // Example transformation: keep only the last 10 elements
     return data.slice(-10);
   }
 }
