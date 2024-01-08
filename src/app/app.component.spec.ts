@@ -23,12 +23,9 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        // Replace the actual components with mocks if necessary
         MockSettingsComponent,
         MockDataDisplayComponent
-        // Otherwise, use the actual components
-        // SettingsComponentComponent,
-        // DataDisplayComponent
+
       ],
     }).compileComponents();
   }));
