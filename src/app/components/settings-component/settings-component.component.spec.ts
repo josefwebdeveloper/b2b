@@ -58,4 +58,12 @@ describe('SettingsComponentComponent', () => {
     expect(mockDataService.updateWorkerSettings).toHaveBeenCalledWith(1000, 1000);
   });
 
+  it('should update customIds', () => {
+    const customIds = ['id1', 'id2', 'id3'];
+    component.settingsForm.controls['customIds'].setValue(customIds);
+    component.updateCustomIds();
+    expect(mockDataService.updateCustomIds).toHaveBeenCalledWith(customIds);
+  });
+
+
 });
