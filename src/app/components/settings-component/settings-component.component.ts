@@ -1,23 +1,41 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {DataService} from "../../services/data.service";
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { DataService } from "../../services/data.service";
+import {FormGroupTyped} from "../../utility/form-group-typed";
+import {SettingsFormData} from "../../model/form.model";
 
 @Component({
   selector: 'app-settings-component',
   templateUrl: './settings-component.component.html',
   styleUrls: ['./settings-component.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
-
 })
 export class SettingsComponentComponent {
-  customIds: string[] = Array(3).fill('');
-  constructor(private dataService: DataService) {}
-  updateCustomIds(): void {
-    this.dataService.updateCustomIds(this.customIds);
+  settingsForm: FormGroupTyped<SettingsFormData>;
+
+  constructor(private dataService: DataService, private fb: FormBuilder) {
+    this.settingsForm = this.fb.group({
+      timer: ['3000', [Validators.required, Validators.min(1)]],
+      arraySize: ['1000', [Validators.required, Validators.min(1)]],
+      customIds: this.fb.array(Array(3).fill('').map(() => this.fb.control('')))
+    }) as FormGroupTyped<SettingsFormData>;
   }
 
-  onSettingsChange(timerValue: string, arraySizeValue: string): void {
-    const timer = +timerValue;
-    const arraySize = +arraySizeValue;
-    this.dataService.updateWorkerSettings(timer, arraySize);
+  get customIds() {
+    return this.settingsForm.get('customIds') as FormArray;
   }
+
+  updateCustomIds(): void {
+    // Logic to update custom IDs
+    const customIds = this.settingsForm.value.customIds;
+    this.dataService.updateCustomIds(customIds);
+  }
+
+  onSettingsChange(): void {
+    if (this.settingsForm.valid) {
+      const settingsData = this.settingsForm.value;
+      this.dataService.updateWorkerSettings(settingsData.timer, settingsData.arraySize);
+    }
+  }
+
 }

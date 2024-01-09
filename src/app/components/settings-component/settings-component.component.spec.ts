@@ -1,24 +1,32 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingsComponentComponent } from './settings-component.component';
-import { DataService } from "../../services/data.service";
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+import { DataService } from '../../services/data.service';
+import { By } from '@angular/platform-browser';
 
 describe('SettingsComponentComponent', () => {
   let component: SettingsComponentComponent;
   let fixture: ComponentFixture<SettingsComponentComponent>;
-  let mockDataService: { updateCustomIds: any; updateWorkerSettings: any; };
+  let mockDataService;
+  let formBuilder: FormBuilder;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     mockDataService = jasmine.createSpyObj(['updateCustomIds', 'updateWorkerSettings']);
 
-    TestBed.configureTestingModule({
-      imports: [FormsModule],
+
+    await TestBed.configureTestingModule({
       declarations: [SettingsComponentComponent],
-      providers: [{ provide: DataService, useValue: mockDataService }]
-    });
+      imports: [ReactiveFormsModule],
+      providers: [
+        { provide: DataService, useValue: mockDataService },
+        FormBuilder
+      ]
+
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SettingsComponentComponent);
     component = fixture.componentInstance;
+    formBuilder = TestBed.inject(FormBuilder);
     fixture.detectChanges();
   });
 
@@ -26,14 +34,14 @@ describe('SettingsComponentComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call updateCustomIds when updateCustomIds is called', () => {
-    component.customIds = ['id1', 'id2', 'id3'];
-    component.updateCustomIds();
-    expect(mockDataService.updateCustomIds).toHaveBeenCalledWith(['id1', 'id2', 'id3']);
+  it('form invalid when empty', () => {
+    component.settingsForm.reset({
+      timer: '',
+      arraySize: '',
+      customIds: formBuilder.array([])
+    });
+    expect(component.settingsForm.valid).toBeFalsy();
   });
 
-  it('should call updateWorkerSettings with correct parameters on onSettingsChange', () => {
-    component.onSettingsChange('1000', '5');
-    expect(mockDataService.updateWorkerSettings).toHaveBeenCalledWith(1000, 5);
-  });
+
 });

@@ -1,24 +1,22 @@
-
-<div class="settings-container">
+<div class="settings-container" [formGroup]="settingsForm">
   <div class="form-group">
     <label for="timerInput">Timer interval (ms):</label>
-    <input type="number" id="timerInput" class="form-control"
-           (change)="onSettingsChange(timerInput.value, arraySizeInput.value)" #timerInput>
+    <input type="number" id="timerInput" class="form-control" formControlName="timer">
   </div>
 
   <div class="form-group">
     <label for="arraySizeInput">Array size:</label>
-    <input type="number" id="arraySizeInput" class="form-control"
-           (change)="onSettingsChange(timerInput.value, arraySizeInput.value)" #arraySizeInput>
+    <input type="number" id="arraySizeInput" class="form-control" formControlName="arraySize">
   </div>
 
-
-
-  <div class="custom-ids-container">
-    <div *ngFor="let id of customIds; let i = index" class="custom-id-group">
+  <div class="custom-ids-container" formArrayName="customIds">
+    <div *ngFor="let idControl of customIds.controls; let i = index" class="custom-id-group">
       <label for="customId-{{i}}">Custom ID {{ i + 1 }}:</label>
-      <input type="text" id="customId-{{i}}" class="form-control" [(ngModel)]="customIds[i]"
-             (change)="updateCustomIds()">
+      <input type="text" id="customId-{{i}}" class="form-control" [formControlName]="i">
     </div>
   </div>
+
+  <button (click)="onSettingsChange()" mat-fab extended color="primary">
+    Update Settings
+  </button>
 </div>
