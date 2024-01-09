@@ -9,7 +9,7 @@ describe('SettingsComponentComponent', () => {
   let mockDataService: jasmine.SpyObj<DataService>;
 
   beforeEach(async () => {
-    mockDataService = jasmine.createSpyObj('DataService', ['updateCustomIds']);
+    mockDataService = jasmine.createSpyObj('DataService', ['updateCustomIds','updateWorkerSettings']);
 
     await TestBed.configureTestingModule({
       declarations: [SettingsComponentComponent],
@@ -48,6 +48,14 @@ describe('SettingsComponentComponent', () => {
     component.updateCustomIds();
 
     expect(mockDataService.updateCustomIds).toHaveBeenCalledWith(['id1', 'id2', 'id3']);
+  });
+
+  it('should call updateWorkerSettings on DataService with correct values', () => {
+    component.settingsForm.controls['timer'].setValue(1000);
+    component.settingsForm.controls['arraySize'].setValue(1000);
+    component.onSettingsChange();
+
+    expect(mockDataService.updateWorkerSettings).toHaveBeenCalledWith(1000, 1000);
   });
 
 });
