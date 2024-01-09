@@ -30,7 +30,6 @@ describe('DataDisplayComponent', () => {
   let mockDataService: MockDataService;
 
   beforeEach(async () => {
-    // Provide the mock service for DataService
     await TestBed.configureTestingModule({
       declarations: [DataDisplayComponent],
       providers: [
@@ -66,14 +65,11 @@ describe('DataDisplayComponent', () => {
     }];
     mockDataService = TestBed.inject(DataService) as unknown as MockDataService;
 
-    // Act
     component.ngOnInit();
     fixture.detectChanges();
 
-    // Assert
     expect(component.dataStream).toEqual(mockData);
   });
-  // Test if the component correctly updates dataStream with data from the service
   it('should update dataStream with data from service', () => {
     mockDataService = TestBed.inject(DataService) as unknown as MockDataService;
     component.ngOnInit();
