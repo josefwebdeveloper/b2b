@@ -1,7 +1,6 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DataDisplayComponent } from './components/data-display/data-display.component';
@@ -17,7 +16,6 @@ import {MatButtonModule} from "@angular/material/button";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

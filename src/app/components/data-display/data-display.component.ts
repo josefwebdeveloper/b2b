@@ -31,6 +31,7 @@ export class DataDisplayComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy() {
+    this.dataService.stopWorkerInterval();
     this.subscription.unsubscribe()
   }
 }

@@ -36,6 +36,9 @@ export class DataService {
 
     this.dataWorker?.postMessage({timer, arraySize});
   }
+  stopWorkerInterval() {
+    this.dataWorker?.postMessage({ command: 'stop' });
+  }
   handleIncomingData(data: DataObject[]) {
     // Apply transformations here (e.g., slicing to last 10 elements)
     const modifiedData = this.applyTransformations(data);

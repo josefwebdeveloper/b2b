@@ -1,12 +1,20 @@
+let intervalId: number | null = null;
+
 addEventListener('message', ({data}) => {
-  const {arraySize, timer} = data;
-  setInterval(() => {
+  const {arraySize, timer,command} = data;
+  if (intervalId) {
+    clearInterval(intervalId);
+  } else if (command === 'stop') {
+    return;
+  }
+  intervalId = setInterval(() => {
     const dataArray = [];
     for (let i = 0; i < arraySize; i++) {
       dataArray.push(generateDataObject());
     }
     postMessage(dataArray);
   }, timer);
+  console.log(intervalId)
 });
 
 function generateDataObject() {
