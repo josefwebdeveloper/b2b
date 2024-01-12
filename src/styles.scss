@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@for $i from 1 through 10 {
+  // Margins
+  .m#{$i} { margin: $i * 4px; }
+  .ml#{$i} { margin-left: $i * 4px; }
+  .mr#{$i} { margin-right: $i * 4px; }
+  .mt#{$i} { margin-top: $i * 4px; }
+  .mb#{$i} { margin-bottom: $i * 4px; }
+
+  // Paddings
+  .p#{$i} { padding: $i * 4px; }
+  .pl#{$i} { padding-left: $i * 4px; }
+  .pr#{$i} { padding-right: $i * 4px; }
+  .pt#{$i} { padding-top: $i * 4px; }
+  .pb#{$i} { padding-bottom: $i * 4px; }
+}
+
 
 
 html, body { height: 100vh;  overflow: hidden}

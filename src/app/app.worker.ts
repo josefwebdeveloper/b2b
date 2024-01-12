@@ -1,4 +1,4 @@
-let intervalId: number | null = null;
+let intervalId:  ReturnType<typeof setInterval>;
 
 addEventListener('message', ({data}) => {
   const {arraySize, timer,command} = data;
