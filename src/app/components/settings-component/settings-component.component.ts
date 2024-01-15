@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import { FormBuilder, Validators, FormArray } from '@angular/forms';
-import { DataService } from "../../services/data.service";
+import {FormBuilder, Validators, FormArray} from '@angular/forms';
+import {DataService} from "../../services/data.service";
 import {FormGroupTyped} from "../../utility/form-group-typed";
 import {SettingsFormData} from "../../model/form.model";
 
@@ -17,23 +17,33 @@ export class SettingsComponentComponent {
     this.settingsForm = this.fb.group({
       timer: ['3000', [Validators.required, Validators.min(1)]],
       arraySize: ['1000', [Validators.required, Validators.min(1)]],
-      customIds: this.fb.array(Array(3).fill('').map(() => this.fb.control('')))
+      customIds: ['']
     }) as FormGroupTyped<SettingsFormData>;
   }
 
-  get customIds() {
-    return this.settingsForm.get('customIds') as FormArray;
-  }
+  // get customIds() {
+  //   return this.settingsForm.get('customIds');
+  // }
 
-  updateCustomIds(): void {
-    const customIds = this.settingsForm.value.customIds;
-    this.dataService.updateCustomIds(customIds);
-  }
+  // updateCustomIds(): void {
+  //   const customIds = this.settingsForm.value.customIds;
+  //   this.dataService.updateCustomIds(customIds);
+  // }
+  //
+
 
   onSettingsChange(): void {
     if (this.settingsForm.valid) {
       const settingsData = this.settingsForm.value;
-      this.dataService.updateWorkerSettings(settingsData.timer, settingsData.arraySize);
+      let customIds!: string[]
+      if (settingsData.customIds.length > 0) {
+        customIds = settingsData.customIds.split(',')
+          .map((id: string) => id.trim()) // Trim whitespace
+          .filter((id: string) => /^[a-zA-Z0-9]+$/.test(id));
+      }
+
+      console.log(settingsData)
+      this.dataService.updateWorkerSettings(settingsData.timer, settingsData.arraySize, customIds);
     }
   }
 

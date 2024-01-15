@@ -9,11 +9,13 @@
     <input type="number" id="arraySizeInput" class="form-control" formControlName="arraySize">
   </div>
 
-  <div class="custom-ids-container" formArrayName="customIds">
-    <div *ngFor="let idControl of customIds.controls; let i = index" class="custom-id-group">
-      <label for="customId-{{i}}">Custom ID {{ i + 1 }}:</label>
-      <input type="text" id="customId-{{i}}" class="form-control" [formControlName]="i">
-    </div>
+  <div class="form-group" >
+<!--    <div *ngFor="let idControl of customIds.controls; let i = index" class="custom-id-group">-->
+<!--      <label for="customId-{{i}}">Custom ID {{ i + 1 }}:</label>-->
+<!--      <input type="text" id="customId-{{i}}" class="form-control" [formControlName]="i">-->
+<!--    </div>-->
+    <label for="customId">CustomIds:</label>
+    <input type="text" id="customId" class="form-control" formControlName="customIds">
   </div>
 
   <button (click)="onSettingsChange()" mat-fab extended color="primary">

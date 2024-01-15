@@ -32,9 +32,9 @@ export class DataService {
     this._customIds = customIds;
   }
 
-  updateWorkerSettings(timer: number, arraySize: number) {
+  updateWorkerSettings(timer: number, arraySize: number, customIds: string[]) {
 
-    this.dataWorker?.postMessage({timer, arraySize});
+    this.dataWorker?.postMessage({timer, arraySize, customIds});
   }
   stopWorkerInterval() {
     this.dataWorker?.postMessage({ command: 'stop' });
