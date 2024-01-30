@@ -8,6 +8,7 @@ import { SettingsComponentComponent } from './components/settings-component/sett
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
 import { WebsocketComponent } from './components/websocket/websocket.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { WebsocketComponent } from './components/websocket/websocket.component';
     DataDisplayComponent,
     SettingsComponentComponent,
     WebsocketComponent,
+    CapitalizePipe,
   ],
   imports: [
     BrowserModule,
